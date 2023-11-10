@@ -29,7 +29,7 @@
       inputs.pythoneda-shared-pythoneda-domain.follows =
         "pythoneda-shared-pythoneda-domain";
       url =
-        "github:pythoneda-shared-artifact/application-artifact/0.0.5?dir=application";
+        "github:pythoneda-shared-artifact/application-artifact/0.0.7?dir=application";
     };
     pythoneda-shared-artifact-events = {
       inputs.flake-utils.follows = "flake-utils";
@@ -58,7 +58,7 @@
       inputs.pythoneda-shared-pythoneda-domain.follows =
         "pythoneda-shared-pythoneda-domain";
       url =
-        "github:pythoneda-shared-artifact/infrastructure-artifact/0.0.6?dir=infrastructure";
+        "github:pythoneda-shared-artifact/infrastructure-artifact/0.0.8?dir=infrastructure";
     };
     pythoneda-shared-artifact-shared = {
       inputs.flake-utils.follows = "flake-utils";
@@ -67,7 +67,7 @@
         "pythoneda-shared-pythoneda-banner";
       inputs.pythoneda-shared-pythoneda-domain.follows =
         "pythoneda-shared-pythoneda-domain";
-      url = "github:pythoneda-shared-artifact/shared-artifact/0.0.4?dir=shared";
+      url = "github:pythoneda-shared-artifact/shared-artifact/0.0.6?dir=shared";
     };
     pythoneda-shared-pythoneda-application = {
       inputs.flake-utils.follows = "flake-utils";
@@ -77,7 +77,7 @@
       inputs.pythoneda-shared-pythoneda-domain.follows =
         "pythoneda-shared-pythoneda-domain";
       url =
-        "github:pythoneda-shared-pythoneda/application-artifact/0.0.8?dir=application";
+        "github:pythoneda-shared-pythoneda/application-artifact/0.0.10?dir=application";
     };
     pythoneda-shared-pythoneda-banner = {
       inputs.flake-utils.follows = "flake-utils";
@@ -105,8 +105,8 @@
       let
         org = "pythoneda-sandbox";
         repo = "python-dep-artifact";
-        version = "0.0.140";
-        sha256 = "1pdri0smlldjh9i22rl2na0ywh02xzm3kdx2sv9mrpwya28d7npx";
+        version = "0.0.141";
+        sha256 = "1rfrjy0db3sfipryc5qskw9vyp8vfy8z5y5557mjgwy2i3qfyfz6";
         pname = "${org}-${repo}";
         pythonpackage = "pythoneda.sandbox.dep.artifact";
         package = builtins.replaceStrings [ "." ] [ "/" ] pythonpackage;
@@ -131,6 +131,7 @@
           , pythoneda-shared-artifact-shared
           , pythoneda-shared-pythoneda-application
           , pythoneda-shared-pythoneda-banner, pythoneda-shared-pythoneda-domain
+
           }:
           let
             pnameWithUnderscores =
@@ -217,6 +218,7 @@
               pythoneda-shared-artifact-shared
               pythoneda-shared-pythoneda-application
               pythoneda-shared-pythoneda-domain
+              unidiff # belongs to pythoneda-shared-artifact/events
             ];
 
             pythonImportsCheck = [ pythonpackage ];
