@@ -29,7 +29,7 @@
       inputs.pythoneda-shared-pythoneda-domain.follows =
         "pythoneda-shared-pythoneda-domain";
       url =
-        "github:pythoneda-shared-artifact/application-artifact/0.0.7?dir=application";
+        "github:pythoneda-shared-artifact/application-artifact/0.0.8?dir=application";
     };
     pythoneda-shared-artifact-events = {
       inputs.flake-utils.follows = "flake-utils";
@@ -38,7 +38,7 @@
         "pythoneda-shared-pythoneda-banner";
       inputs.pythoneda-shared-pythoneda-domain.follows =
         "pythoneda-shared-pythoneda-domain";
-      url = "github:pythoneda-shared-artifact/events-artifact/0.0.6?dir=events";
+      url = "github:pythoneda-shared-artifact/events-artifact/0.0.7?dir=events";
     };
     pythoneda-shared-artifact-events-infrastructure = {
       inputs.flake-utils.follows = "flake-utils";
@@ -48,7 +48,7 @@
       inputs.pythoneda-shared-pythoneda-domain.follows =
         "pythoneda-shared-pythoneda-domain";
       url =
-        "github:pythoneda-shared-artifact/events-infrastructure-artifact/0.0.5?dir=events-infrastructure";
+        "github:pythoneda-shared-artifact/events-infrastructure-artifact/0.0.6?dir=events-infrastructure";
     };
     pythoneda-shared-artifact-infrastructure = {
       inputs.flake-utils.follows = "flake-utils";
@@ -58,7 +58,7 @@
       inputs.pythoneda-shared-pythoneda-domain.follows =
         "pythoneda-shared-pythoneda-domain";
       url =
-        "github:pythoneda-shared-artifact/infrastructure-artifact/0.0.8?dir=infrastructure";
+        "github:pythoneda-shared-artifact/infrastructure-artifact/0.0.10?dir=infrastructure";
     };
     pythoneda-shared-artifact-shared = {
       inputs.flake-utils.follows = "flake-utils";
@@ -67,7 +67,7 @@
         "pythoneda-shared-pythoneda-banner";
       inputs.pythoneda-shared-pythoneda-domain.follows =
         "pythoneda-shared-pythoneda-domain";
-      url = "github:pythoneda-shared-artifact/shared-artifact/0.0.6?dir=shared";
+      url = "github:pythoneda-shared-artifact/shared-artifact/0.0.9?dir=shared";
     };
     pythoneda-shared-pythoneda-application = {
       inputs.flake-utils.follows = "flake-utils";
@@ -77,12 +77,12 @@
       inputs.pythoneda-shared-pythoneda-domain.follows =
         "pythoneda-shared-pythoneda-domain";
       url =
-        "github:pythoneda-shared-pythoneda/application-artifact/0.0.10?dir=application";
+        "github:pythoneda-shared-pythoneda/application-artifact/0.0.18?dir=application";
     };
     pythoneda-shared-pythoneda-banner = {
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixos.follows = "nixos";
-      url = "github:pythoneda-shared-pythoneda/banner/0.0.13";
+      url = "github:pythoneda-shared-pythoneda/banner/0.0.25";
     };
     pythoneda-shared-pythoneda-domain = {
       inputs.flake-utils.follows = "flake-utils";
@@ -90,7 +90,7 @@
       inputs.pythoneda-shared-pythoneda-banner.follows =
         "pythoneda-shared-pythoneda-banner";
       url =
-        "github:pythoneda-shared-pythoneda/domain-artifact/0.0.14?dir=domain";
+        "github:pythoneda-shared-pythoneda/domain-artifact/0.0.16?dir=domain";
     };
   };
   outputs = inputs:
@@ -105,8 +105,8 @@
       let
         org = "pythoneda-sandbox";
         repo = "python-dep-artifact";
-        version = "0.0.141";
-        sha256 = "1rfrjy0db3sfipryc5qskw9vyp8vfy8z5y5557mjgwy2i3qfyfz6";
+        version = "0.0.142";
+        sha256 = "09jx2wf2zwbbb42pchpb0xhvw6w5yjb16vwigp24z58l35xjv61p";
         pname = "${org}-${repo}";
         pythonpackage = "pythoneda.sandbox.dep.artifact";
         package = builtins.replaceStrings [ "." ] [ "/" ] pythonpackage;
@@ -264,6 +264,32 @@
             };
           };
       in rec {
+        apps = rec {
+          default = pythoneda-sandbox-python-dep-artifact-default;
+          pythoneda-sandbox-python-dep-artifact-default =
+            pythoneda-sandbox-python-dep-artifact-python311;
+          pythoneda-sandbox-python-dep-artifact-python38 = shared.app-for {
+            package =
+              self.packages.${system}.pythoneda-sandbox-python-dep-artifact-python38;
+            inherit entrypoint;
+          };
+          pythoneda-sandbox-python-dep-artifact-python39 = shared.app-for {
+            package =
+              self.packages.${system}.pythoneda-sandbox-python-dep-artifact-python39;
+            inherit entrypoint;
+          };
+          pythoneda-sandbox-python-dep-artifact-python310 = shared.app-for {
+            package =
+              self.packages.${system}.pythoneda-sandbox-python-dep-artifact-python310;
+            inherit entrypoint;
+          };
+          pythoneda-sandbox-python-dep-artifact-python311 = shared.app-for {
+            package =
+              self.packages.${system}.pythoneda-sandbox-python-dep-artifact-python311;
+            inherit entrypoint;
+          };
+        };
+        defaultApp = apps.default;
         defaultPackage = packages.default;
         devShells = rec {
           default = pythoneda-sandbox-python-dep-artifact-default;
