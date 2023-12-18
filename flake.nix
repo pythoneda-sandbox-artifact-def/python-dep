@@ -55,7 +55,7 @@
         "pythoneda-shared-pythoneda-banner";
       inputs.pythoneda-shared-pythoneda-domain.follows =
         "pythoneda-shared-pythoneda-domain";
-      url = "github:pythoneda-shared-artifact-def/infrastructure/0.0.19";
+      url = "github:pythoneda-shared-artifact-def/infrastructure/0.0.20";
     };
     pythoneda-shared-artifact-shared = {
       inputs.flake-utils.follows = "flake-utils";
@@ -230,7 +230,7 @@
             postPatch = ''
               substituteInPlace /build/$sourceRoot/entrypoint.sh \
                 --replace "@SOURCE@" "$out/bin/${entrypoint}.sh" \
-                --replace "@PYTHONPATH@" "$PYTHONPATH" \
+                --replace "@PYTHONPATH@" "$out/lib/python${pythonMajorMinorVersion}/site-packages:$PYTHONPATH" \
                 --replace "@CUSTOM_CONTENT@" "" \
                 --replace "@ENTRYPOINT@" "$out/lib/python${pythonMajorMinorVersion}/site-packages/${package}/application/${entrypoint}.py" \
                 --replace "@BANNER@" "$out/bin/banner.sh"
